@@ -1,0 +1,562 @@
+{ 
+  "iconsLink": {
+  	"type": "text",
+    "label": "Icons you can use",
+    "value": "https://fontawesome.com/icons?d=gallery&p=2&s=solid&m=free",
+    "group": "Info"
+  },
+  "developerDiscord": {
+  	"type": "text",
+    "label": "Developer Discord",
+    "value": "https://discord.com/invite/w88MhTN9pd",
+    "group": "Info"
+  },
+  "backgroundColor": {
+    "type": "colorpicker",
+    "label": "Background Color",
+    "value": "rgb(21, 21, 21)",
+    "group": "General"
+  },
+  "backgroundStyle": {
+    "type": "dropdown",
+    "label": "Background Style",
+    "options": {
+      "false": "None",
+      "rgb": "👽RGB (Animated)",
+      "clouds": "☁️Clouds",
+      "hexagons": "🧊Hexagons",
+      "topography": "📡Topography",
+      "bricks": "🧱Bricks",
+      "cross": "✖️Cross",
+      "wiggles": "〰️Wiggles",
+      "bubbles": "⚪Bubbles",
+      "plus": "➕Plus",
+      "stripes": "➖Stripes"
+    },
+    "value": "false",
+    "group": "General"
+  },
+  "accentColor": {
+    "type": "colorpicker",
+    "label": "Accent Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "General"
+  },
+  "fontColor": {
+    "type": "colorpicker",
+    "label": "Text Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "General"
+  },
+  "fontName": {
+    "type": "googleFont",
+    "label": "Font",
+    "value": "Merriweather Sans",
+    "group": "General"
+  },
+  "fontSize": {
+    "type": "number",
+    "label": "Text Size (px)",
+    "value": 18,
+    "group": "General"
+  },
+  "fontWeight": {
+    "type": "dropdown",
+    "label": "Text Thickness",
+    "options": {
+      "100": "Thin",
+      "200": "Extra Light",
+      "300": "Light",
+      "400": "Normal",
+      "500": "Medium",
+      "600": "Semi Bold",
+      "700": "Bold",
+      "800": "Extra Bold",
+      "900": "Ultra Thick 🍑"
+    },
+    "value": "900",
+    "group": "General"
+  },
+   "lineHeight": {
+    "type": "number",
+    "label": "Line-Height (multiplier)",
+    "value": 1.2,
+    "group": "General"
+  },
+  "textPosition": {
+    "type": "dropdown",
+    "label": "Text Position",
+    "options": {
+      "flex-start": "Left",
+      "center": "Center",
+      "flex-end": "Right"
+    },
+    "value": "flex-start",
+    "group": "General"
+  },
+  "textTransform": {
+    "type": "dropdown",
+    "label": "Text Transform",
+    "options": {
+      "none": "None",
+      "uppercase": "Uppercase",
+      "lowercase": "Lowercase"
+    },
+    "value": "none",
+    "group": "General"
+  },
+  "iconColor": {
+    "type": "colorpicker",
+    "label": "Icon Color",
+    "value": "rgb(145, 70, 255)",
+    "group": "General"
+  },
+  "iconSpacing": {
+    "type": "number",
+    "label": "Icon Spacing (px)",
+    "value": 8,
+    "group": "General"
+  },
+  "iconPosition": {
+    "type": "dropdown",
+    "label": "Icon Position",
+    "options": {
+      "left": "Left",
+      "right": "Right"
+    },
+    "value": "left",
+    "group": "General"
+  },
+  "widgetPadding": {
+    "type": "number",
+    "label": "Widget Padding (px)",
+    "value": 15,
+    "group": "General"
+  },
+  "borderColor": {
+    "type": "colorpicker",
+    "label": "Background Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Border"
+  },
+  "borderWidth": {
+    "type": "number",
+    "label": "Border Width (px)",
+    "value": 2,
+    "group": "Border"
+  },
+  "borderRadius": {
+    "type": "number",
+    "label": "Border Rounding (px)",
+    "value": 10,
+    "group": "Border"
+  },
+  "borderStyle": {
+    "type": "dropdown",
+    "label": "Border Style",
+    "options": {
+      "none": "None",
+      "solid": "Solid",
+      "dotted": "Dotted",
+      "dashed": "Dashed"
+    },
+    "value": "none",
+    "group": "Border"
+  },
+  "boxShadowColor": {
+    "type": "colorpicker",
+    "label": "Shadow Color",
+    "value": "rgba(0,0,0,0.4)",
+    "group": "Box Shadow"
+  },
+  "boxShadowHorizontal": {
+    "type": "slider",
+    "label": "Horizontal Shadow Length",
+    "value": 0,
+    "min": -5,
+    "max": 5,
+    "step": 1,
+    "group": "Box Shadow"
+  },
+  "boxShadowVertical": {
+    "type": "slider",
+    "label": "Vertical Shadow Length",
+    "value": 3,
+    "min": -5,
+    "max": 5,
+    "step": 1,
+    "group": "Box Shadow"
+  },
+  "boxShadowBlur": {
+    "type": "slider",
+    "label": "Blur Radius",
+    "value": 2,
+    "min": 0,
+    "max": 10,
+    "step": 1,
+    "group": "Box Shadow"
+  },
+  "textShadowColor": {
+    "type": "colorpicker",
+    "label": "Shadow Color",
+    "value": "rgba(0,0,0,0.3)",
+    "group": "Box Shadow"
+  },
+  "textShadowHorizontal": {
+    "type": "slider",
+    "label": "Horizontal Shadow Length",
+    "value": 0,
+    "min": -5,
+    "max": 5,
+    "step": 1,
+    "group": "Text Shadow"
+  },
+  "textShadowVertical": {
+    "type": "slider",
+    "label": "Vertical Shadow Length",
+    "value": 3,
+    "min": -5,
+    "max": 5,
+    "step": 1,
+    "group": "Text Shadow"
+  },
+  "textShadowBlur": {
+    "type": "slider",
+    "label": "Blur Radius",
+    "value": 2,
+    "min": 0,
+    "max": 10,
+    "step": 1,
+    "group": "Text Shadow"
+  },
+  "followerLatest": {
+    "type": "dropdown",
+    "label": "Latest Follower",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Followers"
+  },
+  "followerAlert": {
+    "type": "dropdown",
+    "label": "Follower Alert",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Followers"
+  },
+  "followerSound": {
+    "type": "sound-input",
+    "label": "Follower Sound",
+    "group": "Followers"
+  },
+  "followerVolume": {
+    "type": "slider",
+    "label": "Sound Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "group": "Followers"
+  },
+  "followerIcon": {
+  	"type": "text",
+    "label": "Followers Icon",
+    "value": "heart",
+    "group": "Followers"
+  },
+  "followerPlaceholder": {
+  	"type": "text",
+    "label": "Latest Follower Empty",
+    "value": "No Followers",
+    "group": "Followers"
+  },
+  "subscriberLatest": {
+    "type": "dropdown",
+    "label": "Latest Sub",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Subs"
+  },
+  "subscriberAlert": {
+    "type": "dropdown",
+    "label": "Sub Alert",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Subs"
+  },
+  "subscriberSound": {
+    "type": "sound-input",
+    "label": "Subscriber Sound",
+    "group": "Subs"
+  },
+  "subscriberVolume": {
+    "type": "slider",
+    "label": "Sound Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "group": "Subs"
+  },
+  "subscriberIcon": {
+  	"type": "text",
+    "label": "Sub Icon",
+    "value": "star",
+    "group": "Subs"
+  },
+  "subscriberGiftIcon": {
+  	"type": "text",
+    "label": "Sub Gift Icon",
+    "value": "gift",
+    "group": "Subs"
+  },
+  "subscriberPlaceholder": {
+  	"type": "text",
+    "label": "Latest Sub Empty",
+    "value": "No Subs",
+    "group": "Subs"
+  },
+  "tipLatest": {
+    "type": "dropdown",
+    "label": "Latest Tip",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Tips"
+  },
+  "tipAlert": {
+    "type": "dropdown",
+    "label": "Tip Alert",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Tips"
+  },
+  "tipSound": {
+    "type": "sound-input",
+    "label": "Tip Sound",
+    "group": "Tips"
+  },
+  "tipVolume": {
+    "type": "slider",
+    "label": "Sound Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "group": "Tips"
+  },
+  "tipIcon": {
+  	"type": "text",
+    "label": "Tip Icon",
+    "value": "dollar-sign",
+    "group": "Tips"
+  },
+  "tipPlaceholder": {
+  	"type": "text",
+    "label": "Latest Tip Empty",
+    "value": "No Tips",
+    "group": "Tips"
+  },
+  "cheerLatest": {
+    "type": "dropdown",
+    "label": "Latest Cheer",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Cheers"
+  },
+  "cheerAlert": {
+    "type": "dropdown",
+    "label": "Cheer Alert",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Cheers"
+  },
+  "cheerSound": {
+    "type": "sound-input",
+    "label": "Cheer Sound",
+    "group": "Cheers"
+  },
+  "cheerVolume": {
+    "type": "slider",
+    "label": "Sound Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "group": "Cheers"
+  },
+  "cheerIcon": {
+  	"type": "text",
+    "label": "Cheer Icon",
+    "value": "gem",
+    "group": "Cheers"
+  },
+  "cheerPlaceholder": {
+  	"type": "text",
+    "label": "Latest Cheer Empty",
+    "value": "No Cheers",
+    "group": "Cheers"
+  },
+  "raidAlert": {
+    "type": "dropdown",
+    "label": "Raid Alert",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "true",
+    "group": "Raids"
+  },
+  "raidSound": {
+    "type": "sound-input",
+    "label": "Raid Sound",
+    "group": "Raids"
+  },
+  "raidVolume": {
+    "type": "slider",
+    "label": "Sound Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "group": "Raids"
+  },
+  "raidIcon": {
+  	"type": "text",
+    "label": "Raid Icon",
+    "value": "users",
+    "group": "Raids"
+  },
+  "hostAlert": {
+    "type": "dropdown",
+    "label": "Host Alert",
+    "options": {
+      "true": "Enable",
+      "false": "Disable"
+    },
+    "value": "false",
+    "group": "Hosts"
+  },
+  "hostSound": {
+    "type": "sound-input",
+    "label": "Host Sound",
+    "group": "Hosts"
+  },
+  "hostVolume": {
+    "type": "slider",
+    "label": "Sound Volume",
+    "value": 100,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "group": "Hosts"
+  },
+  "hostIcon": {
+  	"type": "text",
+    "label": "Host Icon",
+    "value": "users",
+    "group": "Hosts"
+  },
+  "alertBackgroundColor": {
+    "type": "colorpicker",
+    "label": "Alert Background Color",
+    "value": "rgb(145, 70, 255)",
+    "group": "Alerts"
+  },
+  "alertFontColor": {
+    "type": "colorpicker",
+    "label": "Alert Font Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Alerts"
+  },
+  "alertAccentColor": {
+    "type": "colorpicker",
+    "label": "Alert Accent Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Alerts"
+  },
+  "alertIconColor": {
+    "type": "colorpicker",
+    "label": "Alert Icon Color",
+    "value": "rgb(255, 255, 255)",
+    "group": "Alerts"
+  },
+  "alertAnimation": {
+    "type": "dropdown",
+    "label": "Alert Animation",
+    "options": {
+      "fade": "Fade",
+      "slideUp": "Slide Up",
+      "slideDown": "Slide Down",
+      "slideLeft": "Slide Left",
+      "slideRight": "Slide Right"
+    },
+    "value": "slideUp",
+    "group": "Alerts"
+  },
+  "displayTime": {
+    "type": "number",
+    "label": "Display Time (s)",
+    "value": 5,
+    "group": "Advanced"
+  },
+  "transitionTime": {
+    "type": "dropdown",
+    "label": "Transition Time",
+    "options": {
+      "200": "Fast",
+      "400": "Normal",
+      "600": "Slow"
+    },
+    "value": "600",
+    "group": "Advanced"
+  },
+  "customLabel1": {
+    "type": "text",
+    "label": "Custom Label 1",
+    "value": "",
+    "group": "Custom Labels"
+  },
+  "customLabel2": {
+    "type": "text",
+    "label": "Custom Label 2",
+    "value": "",
+    "group": "Custom Labels"
+  },
+  "customLabel3": {
+    "type": "text",
+    "label": "Custom Label 3",
+    "value": "",
+    "group": "Custom Labels"
+  },
+  "widgetName": {
+  	"type": "hidden",
+    "value": "Neohud"
+  },
+  "widgetAuthor":{
+    "type": "hidden",
+    "value": "Neoshin"
+  }
+}
