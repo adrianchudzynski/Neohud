@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family={{fontName}}:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 :root {
-  	/* General Settings */
+  	/* General Settings s*/
   	--background-color: {{backgroundColor}};
   	--background-pattern-opacity: {{backgroundPatternOpacity}};
   	--alert-background-color: {{alertBackgroundColor}};
@@ -69,7 +69,7 @@ body {
 }
 
 .alert-container,
-.loop-container {
+.feed-container {
   	justify-content: var(--text-position);
   	padding: var(--widget-padding);
   	position: absolute;
@@ -99,9 +99,9 @@ body {
   	text-transform: var(--text-transform);
 	display: flex;
   	align-items: center;
-  	filter: drop-shadow(var(--box-shadow-horizontal) var(--box-shadow-vertical) var(--box-shadow-blur) var(--box-shadow-color));
-    -webkit-filter: drop-shadow(var(--box-shadow-horizontal) var(--box-shadow-vertical) var(--box-shadow-blur) var(--box-shadow-color));
-    -moz-filter: drop-shadow(var(--box-shadow-horizontal) var(--box-shadow-vertical) var(--box-shadow-blur) var(--box-shadow-color));
+  	filter: drop-shadow(var(--text-shadow-horizontal) var(--text-shadow-vertical) var(--text-shadow-blur) var(--text-shadow-color));
+    -webkit-filter: drop-shadow(var(--text-shadow-horizontal) var(--text-shadow-vertical) var(--text-shadow-blur) var(--text-shadow-color));
+    -moz-filter: drop-shadow(var(--text-shadow-horizontal) var(--text-shadow-vertical) var(--text-shadow-blur) var(--text-shadow-color));
 }
 
 .text > .icon {

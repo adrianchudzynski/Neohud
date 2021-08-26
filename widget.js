@@ -1,12 +1,12 @@
-// Neohud v1.2 by Neoshin
+// Neohud v1.3 by Neoshin
+
 // Variables
 let setting = {
-    'displayTime': 5, 			// Seconds
-  	'transitionTime': 600,		// Milliseconds
-  	'alertAnimation': 'slideUp',
-  	'customLabelsCount': 3
+    'displayTime': 5, 				// Seconds
+  	'transitionTime': 600,			// Milliseconds
+  	'alertAnimation': 'slideUp'
 };
-let state = {
+let twitch = {
   	'follower': {
     	'icon': 'heart',
       	'name': '',
@@ -25,7 +25,13 @@ let state = {
       	'tier': '',
       	'sender': '',
       	'gifted': false,
-      	'bulkGifted': false
+      	'bulkGifted': false,
+      	'tts': {
+        	'enabled': false,
+          	'volume': 0.75,
+          	'voice': 'Hans',
+          	'delay': 0
+        }
     },
   	'tip': {
     	'icon': 'dollar-sign',
@@ -33,7 +39,13 @@ let state = {
       	'placeholder': '',
       	'sound': '',
       	'volume': 1,
-      	'amount': 0
+      	'amount': 0,
+      	'tts': {
+        	'enabled': false,
+          	'volume': 0.75,
+          	'voice': 'Hans',
+          	'delay': 0
+        }
     },
   	'cheer': {
     	'icon': 'gem',
@@ -41,7 +53,13 @@ let state = {
       	'placeholder': '',
       	'sound': '',
       	'volume': 1,
-      	'amount': 0
+      	'amount': 0,
+      	'tts': {
+        	'enabled': false,
+          	'volume': 0.75,
+          	'voice': 'Hans',
+          	'delay': 0
+        }
     },
   	'host': {
     	'icon': 'users',
@@ -58,15 +76,52 @@ let state = {
       	'amount': 0
     },
 };
-let customLabels 		= {};
+let social = {
+	'twitch': {
+    	'icon': 'twitch',
+      	'text': ''
+    },
+  	'youtube': {
+    	'icon': 'youtube',
+      	'text': ''
+    },
+  	'tiktok': {
+    	'icon': 'tiktok',
+      	'text': ''
+    },
+  	'instagram': {
+    	'icon': 'instagram',
+      	'text': ''
+    },
+  	'twitter': {
+    	'icon': 'twitter',
+      	'text': ''
+    },
+  	'facebook': {
+    	'icon': 'facebook',
+      	'text': ''
+    }
+};
+let custom = {
+	'custom1': {
+    	'text': ''
+    },
+  	'custom2': {
+    	'text': ''
+    },
+  	'custom3': {
+    	'text': ''
+    }
+};
 let channelName 		= '';
 let currency 			= {};
-let data 				= {};
+let sessionData 		= {};
 let fieldData 			= {};
-let latestLoop 			= {};
+let feed 				= {};
+let feedPos				= 0;
 let eventQueue			= [];
-const loopContainer		= $('.loop-container');
-const loopText			= loopContainer.children('.text');
+const feedContainer		= $('.feed-container');
+const feedText			= feedContainer.children('.text');
 const alertContainer	= $('.alert-container');
 const alertText			= alertContainer.children('.text');
 
@@ -75,29 +130,29 @@ window.addEventListener('onWidgetLoad', function(obj) {
   	// Update Variables
   	channelName = obj.detail.channel.username;
   	currency 	= obj.detail.currency;
-  	data 		= obj.detail.session.data;
+  	sessionData = obj.detail.session.data;
   	fieldData 	= obj.detail.fieldData;
   	
   	// Update Objects
   	updateStyles();
   	updateSetting();
-  	updateCustomLabels();
-  	updateState();
-  	updateLoop();
+  	updateTwitch();
+  	updateSocial();
+  	updateCustom();
+  	updateFeed();
   	
-  	// Run the latest loop
-  	latestLabelLoop();
+  	// Run the rotating feed
+  	runFeed();
 });
 
 // On Session Update
 window.addEventListener('onSessionUpdate', function(obj) {  
   	// Update Variables
-	data = obj.detail.session;
+	sessionData = obj.detail.session;
   
   	// Update Objects
-  	updateSetting();
-  	updateState();
-  	updateLoop();
+  	updateTwitch();
+  	updateFeed();
   
   	// Runs an alert if triggered
   	if (eventQueue.length > 0 && eventQueue.length < 2) {
@@ -109,7 +164,7 @@ window.addEventListener('onSessionUpdate', function(obj) {
 window.addEventListener('onEventReceived', function (obj) {
   	// Variables
   	const eventListener = obj.detail.listener;
-  	const eventData = obj.detail.event;
+  	const eventData 	= obj.detail.event;
   
   	if (eventListener.includes('latest')) {
       	const eventObj = {
@@ -119,7 +174,8 @@ window.addEventListener('onEventReceived', function (obj) {
           	'tier': eventData.tier,
           	'sender': eventData.sender,
           	'gifted': eventData.gifted,
-          	'bulkGifted': eventData.bulkGifted
+          	'bulkGifted': eventData.bulkGifted,
+          	'message': eventData.message
         };
       
     	eventQueue.push(eventObj);
@@ -143,97 +199,108 @@ function updateSetting() {
   	setting.alertAnimation	= fieldData.alertAnimation;
 }
 
-// Updates the custom labels
-function updateCustomLabels() {
-  	for (let x = 1; x < setting.customLabelsCount + 1; x++) {
-    	if (fieldData.hasOwnProperty(`customLabel${x}`) && fieldData[`customLabel${x}`] !== '') {
-        	customLabels[`customLabel${x}`] = {
-                'showLabel': true,
-                'text': fieldData[`customLabel${x}`]
-            }
+// Updates the twitch object with the current available data
+function updateTwitch() {  
+  	for (const [key, obj] of Object.entries(twitch)) {
+    	twitch[key].icon 	= fieldData[key + 'Icon'];												// Icon
+        twitch[key].sound 	= fieldData[key + 'Sound'];												// Sound
+        twitch[key].volume 	= fieldData[key + 'Volume'] / 100;										// Volume
+        twitch[key].name 	= sessionData[key + '-latest'].name === '' 								// Name
+          ? twitch[key].placeholder 
+        : sessionData[key + '-latest'].name;
+
+        if (twitch[key].hasOwnProperty('giftIcon')) {												// Gift Icon
+          	twitch[key].giftIcon = fieldData[key + 'GiftIcon'];
+        }
+
+        if (twitch[key].hasOwnProperty('placeholder')) {											// Placeholder
+          	twitch[key].placeholder = fieldData[key + 'Placeholder'];
+        }
+
+        if (twitch[key].hasOwnProperty('amount')) {													// Amount
+          	twitch[key].amount = sessionData[key + '-latest'].amount;
+        }
+
+        if (twitch[key].hasOwnProperty('tier')) {													// Subtier
+        	twitch[key].tier = sessionData[key + '-latest'].tier;
+        }
+
+        if (twitch[key].hasOwnProperty('tts')) {													// TTS
+            twitch[key].tts.enabled 	= fieldData[key + 'TTSEnabled'];
+            twitch[key].tts.volume 	= fieldData[key + 'TTSVolume'] / 100;
+            twitch[key].tts.voice 	= fieldData[key + 'TTSVoice'];
+            twitch[key].tts.delay 	= fieldData[key + 'TTSDelay'];
+        }
+    };
+}
+
+// Update the social labels
+function updateSocial() {  
+	for (const [key, obj] of Object.entries(social)) {
+      	social[key].text 		= fieldData.hasOwnProperty(key) && fieldData[key] !== '' ? fieldData[key] : '';
+        social[key].isSocial	= true;
+    }
+}
+
+// Update the custom labels
+function updateCustom() {  
+	for (const [key, obj] of Object.entries(custom)) {
+      	custom[key].text = fieldData.hasOwnProperty(key) && fieldData[key] !== '' ? fieldData[key] : '';
+    }
+}
+
+// Updates the feed with the enabled labels
+function updateFeed() {
+  	// Inserts twitch labels into the feed
+  	for (const [key, obj] of Object.entries(twitch)) {
+    	if (fieldData.hasOwnProperty(key + 'Latest') && fieldData[key + 'Latest'] === 'true') {
+      		feed[key] = twitch[key];
+        }
+    }
+  
+  	// Inserts social labels into the feed
+  	for (const [key, obj] of Object.entries(social)) {
+    	if (social[key].text !== '') {
+      		feed[key] = social[key];
+        }
+    }
+  
+  	// Inserts custom labels into the feed
+  	for (const [key, obj] of Object.entries(custom)) {
+    	if (custom[key].text !== '') {
+      		feed[key] = custom[key];
         }
     }
 }
 
-// Updates the state object with the current available data
-function updateState() {
-	const stateKeys = Object.keys(state);
-  
-  	stateKeys.forEach(key => {
-    	state[key].icon = fieldData[key + 'Icon'];													// Icon
-      	state[key].sound = fieldData[key + 'Sound'];												// Sound
-      	state[key].volume = fieldData[key + 'Volume'] / 100;										// Volume
-      	state[key].name = data[key + '-latest'].name === '' 										// Name
-              	? state[key].placeholder 
-            	: data[key + '-latest'].name;
-      
-      	if (state[key].hasOwnProperty('giftIcon')) {
-        	state[key].giftIcon = fieldData[key + 'GiftIcon'];										// Gift Icon
-        }
-      
-      	if (state[key].hasOwnProperty('placeholder')) {
-        	state[key].placeholder = fieldData[key + 'Placeholder'];								// Placeholder
-        }
-      
-      	if (state[key].hasOwnProperty('amount')) {
-        	state[key].amount = data[key + '-latest'].amount;										// Amount
-        }
-      
-      	if (state[key].hasOwnProperty('tier')) {
-        	state[key].tier = data[key + '-latest'].tier;											// Subtier
-        }
-    });
-}
-
-// Updates the loops with the enabled labels
-function updateLoop() {
-  	const stateKeys = Object.keys(state);
-  	const customLabelsKeys = Object.keys(customLabels);
-
-  	stateKeys.forEach(key => {
-      	if (fieldData.hasOwnProperty(key + 'Latest') && fieldData[key + 'Latest'] === 'true') {
-        	latestLoop[key] = state[key];
-        }
-    });
-  
-  	customLabelsKeys.forEach(key => {
-      	if (customLabels[key].showLabel) {
-        	latestLoop[key] = customLabels[key];
-          	latestLoop[key].isCustom = true;
-        }
-    });
-}
-
-/* ====================| Looping Functions |==================== */
-// Displays all the enabled latest labels in a loop
-function latestLabelLoop() {
-  	const latestKeys = Object.keys(latestLoop);
+/* ====================| Feed Functions |==================== */
+// Displays all the enabled labels in a feed
+function runFeed() {
+  	const feedKeys = Object.keys(feed);
   	
-  	if(latestKeys.length < 1) return;
+  	if(feedKeys.length < 1) return;
   
-    let latestPos		= 0;
-    let latestType 		= latestKeys[latestPos];
-  	
-    if (latestKeys.length < 2) {
-      	loopText.html(getLabel(latestType));
+    let feedType = feedKeys[feedPos];
+  
+    if (feedKeys.length < 2) {
+      	feedText.html(getLabel(feedType));
 	} else {
       	setInterval(function() {
           	if (eventQueue.length > 0) {
-              	loopText.html(getLabel(eventQueue[0].type));
-      			latestPos = latestKeys.indexOf(eventQueue[0].type) + 1;  	
+              	feedText.html(getLabel(eventQueue[0].type, true)); 
             } else {
-            	latestType = latestKeys[latestPos];
+            	feedType = feedKeys[feedPos];
 			
-                loopContainer.fadeOut(setting.transitionTime, function() {
-                    loopText.html(getLabel(latestType));
-                    loopContainer.fadeIn();
+                feedContainer.fadeOut(setting.transitionTime, function() {
+                    feedText.html(getLabel(feedType));
+                    feedContainer.fadeIn();
                 });
 
-                latestPos++;
+                feedPos++;
             }
           
-          	if (latestPos == latestKeys.length) {
-              	latestPos = 0;
+          	if (feedPos == feedKeys.length) {
+              	feedPos = 0;
             }
       	}, setting.displayTime * 1000);
     }
@@ -252,10 +319,13 @@ function updateEventQueue() {
 // Runs an alert if the triggered event is enabled
 function runAlert() {  	
     // Updates the alert text element
-    alertText.html(getLabel(eventQueue[0].type));
+    alertText.html(getLabel(eventQueue[0].type, true));
   	
   	// Plays the alert sound
   	playAlertSound(eventQueue[0].type);
+  
+  	// Plays the alert TTS
+  	playAlertTTS(eventQueue[0].type, eventQueue[0].message);
 
     // Fires the selected alert animation
     switch(setting.alertAnimation) {
@@ -279,6 +349,7 @@ function runAlert() {
   	// Animatest the amount to count up if eventType is allowed
   	if (eventQueue[0].type === 'follower') return;
     if (eventQueue[0].type === 'sub' && !eventQueue[0].bulkGifted) return;
+  
   	amountCountUp();
 }
 
@@ -302,21 +373,32 @@ function amountCountUp() {
   	});
 }
 
-function playAlertSound(type) {  
-  	if (state[type].sound === '') return;
+function playAlertSound(type) {
+  	if (twitch[type].sound === '') return;
   
-  	let audio = new Audio(state[type].sound);
-  	audio.volume = state[type].volume;
+  	let audio = new Audio(twitch[type].sound);
+  	audio.volume = twitch[type].volume;
   	audio.play();
 }
 
+function playAlertTTS(type, message) {
+	if (!twitch[type].hasOwnProperty('tts')) return;
+  	if (!twitch[type].tts.enabled) return;
+  
+  	const ttsApiCall = `https://api.streamelements.com/kappa/v2/speech?voice=${twitch[type].tts.voice}&text=${message}`;
+  	let audio = new Audio(ttsApiCall);
+  	audio.volume = twitch[type].tts.volume;
+  	
+  	setTimeout(function() { audio.play() }, twitch[type].tts.delay * 1000);
+}
+
 function alertAnimationFade() {  	
-	// Loop Container Animation
-    loopContainer.animate({
+	// Feed Container Animation
+    feedContainer.animate({
     	opacity: '0'
     }, setting.transitionTime, function() {
         setTimeout(function() {
-        	loopContainer.css('opacity', '1');
+        	feedContainer.css('opacity', '1');
         }, setting.transitionTime);
     });
 
@@ -336,12 +418,12 @@ function alertAnimationFade() {
 }
 
 function alertAnimationSlideUp() {  	
-	// Loop Container Animation
-    loopContainer.animate({
+	// Feed Container Animation
+    feedContainer.animate({
     	top: '-100%'
     }, setting.transitionTime, function() {
         setTimeout(function() {
-        	loopContainer.css('top', '0');
+        	feedContainer.css('top', '0');
         }, setting.transitionTime);
     });
 
@@ -361,12 +443,12 @@ function alertAnimationSlideUp() {
 }
 
 function alertAnimationSlideDown() {  	
-	// Loop Container Animation
-    loopContainer.animate({
+	// Feed Container Animation
+    feedContainer.animate({
     	top: '100%'
     }, setting.transitionTime, function() {
         setTimeout(function() {
-        	loopContainer.css('top', '0');
+        	feedContainer.css('top', '0');
         }, setting.transitionTime);
     });
 
@@ -386,12 +468,12 @@ function alertAnimationSlideDown() {
 }
 
 function alertAnimationSlideUp() {  	
-	// Loop Container Animation
-    loopContainer.animate({
+	// Feed Container Animation
+    feedContainer.animate({
     	top: '-100%'
     }, setting.transitionTime, function() {
         setTimeout(function() {
-        	loopContainer.css('top', '0');
+        	feedContainer.css('top', '0');
         }, setting.transitionTime);
     });
 
@@ -411,12 +493,12 @@ function alertAnimationSlideUp() {
 }
 
 function alertAnimationSlideRight() {  	
-	// Loop Container Animation
-    loopContainer.animate({
+	// Feed Container Animation
+    feedContainer.animate({
     	left: '100%'
     }, setting.transitionTime, function() {
         setTimeout(function() {
-        	loopContainer.css('left', '0');
+        	feedContainer.css('left', '0');
         }, setting.transitionTime);
     });
 
@@ -436,12 +518,12 @@ function alertAnimationSlideRight() {
 }
 
 function alertAnimationSlideLeft() {  	
-	// Loop Container Animation
-    loopContainer.animate({
+	// Feed Container Animation
+    feedContainer.animate({
     	left: '-100%'
     }, setting.transitionTime, function() {
         setTimeout(function() {
-        	loopContainer.css('left', '0');
+        	feedContainer.css('left', '0');
         }, setting.transitionTime);
     });
 
@@ -462,67 +544,56 @@ function alertAnimationSlideLeft() {
 
 /* ====================| Getter Functions |==================== */
 // Returns the label html
-function getLabel(type) {
-  	let isAlert = false;
-  	let stateObject = latestLoop[type];
-  	let label = '';
+function getLabel(type, isAlert = false) {
+  	let label 	= '';
+  	let data 	= isAlert ? twitch[type] : feed[type];
   
-  	// If is event then replace with event data
-  	if (eventQueue.length > 0) {
-      	isAlert 				= true;
-      	stateObject 			= state[type];
-    	stateObject.name 		= eventQueue[0].name;
-      	stateObject.amount 		= eventQueue[0].amount;
-		stateObject.tier		= eventQueue[0].tier;
-      	stateObject.sender		= eventQueue[0].sender;
-      	stateObject.gifted		= eventQueue[0].gifted;
-      	stateObject.bulkGifted	= eventQueue[0].bulkGifted;
+  	if (data.hasOwnProperty('icon')) {
+      	const iconType = data.hasOwnProperty('isSocial') && data.isSocial ? 'fab' : 'fas';
+      
+    	label = `<i class="${iconType} fa-${data.icon} icon icon-position-${fieldData.iconPosition}"></i>`;
     }
   
-  	if (stateObject.hasOwnProperty('icon')) {
-    	label = `<i class="fas fa-${stateObject.icon} icon icon-position-${fieldData.iconPosition}"></i>`;
-    }
-  
-    if (stateObject.hasOwnProperty('isCustom') && stateObject.isCustom) {
-      	label += `<span class="text">${stateObject.text}</span>`;
-    } else {
+    if (data.hasOwnProperty('text')) {
+      	label += `<span class="text">${data.text}</span>`;
+    } else {      
     	switch(type) {
         	case 'host':
             case 'raid':
-                label += `<span class="name">${stateObject.name}</span>`;
+                label += `<span class="name">${data.name}</span>`;
                 label += '<span class="delimeter">:</span>';
-                label += `<span class="amount" style="margin-left:5px">${stateObject.amount}</span>`;
+                label += `<span class="amount" style="margin-left:5px">${data.amount}</span>`;
                 break;
             case 'follower':
-                label += `<span class="name">${stateObject.name}</span>`;
+                label += `<span class="name">${data.name}</span>`;
                 break;
             case 'tip':
-                label += `<span class="name">${stateObject.name}</span>`;
+                label += `<span class="name">${data.name}</span>`;
                 label += '<span class="delimeter">:</span>';
-                label += `<span class="amount" style="margin-left:5px">${stateObject.amount}</span>`;
+                label += `<span class="amount" style="margin-left:5px">${data.amount}</span>`;
                 label += `<span class="currency">${currency.symbol}</span>`;
                 break;
             case 'cheer':
-                label += `<span class="name">${stateObject.name}</span>`;
+                label += `<span class="name">${data.name}</span>`;
                 label += '<span class="delimeter">:</span>';
                 label += '<span class="currency" style="margin-left:5px">x</span>';
-                label += `<span class="amount">${stateObject.amount}</span>`;
+                label += `<span class="amount">${data.amount}</span>`;
                 break;
             case 'subscriber':
-                if (isAlert && stateObject.gifted) {
-                    label = `<i class="fas fa-${stateObject.giftIcon} icon icon-position-${fieldData.iconPosition}"></i>`;
-                    label += `<span class="name sender">${stateObject.sender}</span>`;
+                if (isAlert && data.gifted) {
+                    label = `<i class="fas fa-${data.giftIcon} icon icon-position-${fieldData.iconPosition}"></i>`;
+                    label += `<span class="name sender">${data.sender}</span>`;
                     label += '<i class="fas fa-angle-double-right delimeter" style="margin-left:5px;font-size:.75em;"></i>';
-                    label += `<span class="name reciever" style="margin-left:5px">${stateObject.name}</span>`;
-                } else if (isAlert && stateObject.bulkGifted) { 
-                    label = `<i class="fas fa-${stateObject.giftIcon} icon icon-position-${fieldData.iconPosition}"></i>`;
-                    label += `<span class="name sender">${stateObject.sender}</span>`;
+                    label += `<span class="name reciever" style="margin-left:5px">${data.name}</span>`;
+                } else if (isAlert && data.bulkGifted) { 
+                    label = `<i class="fas fa-${data.giftIcon} icon icon-position-${fieldData.iconPosition}"></i>`;
+                    label += `<span class="name sender">${data.sender}</span>`;
                     label += '<span class="delimeter">:</span>';
-                    label += `<span class="amount" style="margin-left:5px">${stateObject.amount}</span>`;
+                    label += `<span class="amount" style="margin-left:5px">${data.amount}</span>`;
                } else {
-                    label += `<span class="name">${stateObject.name}</span>`;
-                    label += typeof stateObject.amount === 'number' 
-                        ? `<span class="currency" style="margin-left:5px">x</span><span class="amount">${stateObject.amount}</span>`
+                    label += `<span class="name">${data.name}</span>`;
+                    label += typeof data.amount === 'number' 
+                        ? `<span class="currency" style="margin-left:5px">x</span><span class="amount">${data.amount}</span>`
                         : '';
                 }
                 break;
