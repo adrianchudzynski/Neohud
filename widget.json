@@ -737,12 +737,12 @@
   "widgetUpdateUrl": {
     "type": "hidden",
     "label": "Socials - linktr.ee/neoshinlive",
-    "value": "https://github.com/NeoshinLIVE/streamelements-widgets/neohud",
+    "value": "https://github.com/NeoshinLIVE/Neohud",
     "group": "About"
   },
   "widgetMore": {
     "type": "hidden",
-    "label": "More Widgets - widgets.neoshin.live",
+    "label": "More Widgets - https://github.com/NeoshinLIVE",
     "group": "About"
   }
 }
