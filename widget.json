@@ -1,562 +1,1041 @@
-{ 
-  "iconsLink": {
-  	"type": "text",
-    "label": "Icons you can use",
-    "value": "https://fontawesome.com/icons?d=gallery&p=2&s=solid&m=free",
-    "group": "Info"
+{
+  "widgetPadding":{
+    "type":"slider",
+    "label":"Content Spacing",
+    "value":15,
+    "min":0,
+    "max":20,
+    "step":1,
+    "group":"Widget Styles"
   },
-  "developerDiscord": {
-  	"type": "text",
-    "label": "Developer Discord",
-    "value": "https://discord.com/invite/w88MhTN9pd",
-    "group": "Info"
+  "backgroundColor":{
+    "type":"colorpicker",
+    "label":"Background Color",
+    "value":"rgb(21, 21, 21)",
+    "group":"Widget Styles"
   },
-  "backgroundColor": {
-    "type": "colorpicker",
-    "label": "Background Color",
-    "value": "rgb(21, 21, 21)",
-    "group": "General"
+  "backgroundColorAlert":{
+    "type":"colorpicker",
+    "label":"Background Color (Alert)",
+    "value":"rgb(145, 70, 255)",
+    "group":"Widget Styles"
   },
-  "backgroundStyle": {
-    "type": "dropdown",
-    "label": "Background Style",
-    "options": {
-      "false": "None",
-      "rgb": "👽RGB (Animated)",
-      "clouds": "☁️Clouds",
-      "hexagons": "🧊Hexagons",
-      "topography": "📡Topography",
-      "bricks": "🧱Bricks",
-      "cross": "✖️Cross",
-      "wiggles": "〰️Wiggles",
-      "bubbles": "⚪Bubbles",
-      "plus": "➕Plus",
-      "stripes": "➖Stripes"
+  "backgroundStyle":{
+    "type":"dropdown",
+    "label":"Background Style",
+    "options":{
+      "false":"None",
+      "rgb":"👽RGB (Animated)",
+      "clouds":"☁️Clouds",
+      "hexagons":"🧊Hexagons",
+      "topography":"📡Topography",
+      "bricks":"🧱Bricks",
+      "cross":"✖️Cross",
+      "wiggles":"〰️Wiggles",
+      "bubbles":"⚪Bubbles",
+      "plus":"➕Plus",
+      "stripes":"➖Stripes"
     },
-    "value": "false",
-    "group": "General"
+    "value":"false",
+    "group":"Widget Styles"
   },
-  "accentColor": {
-    "type": "colorpicker",
-    "label": "Accent Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "General"
-  },
-  "fontColor": {
-    "type": "colorpicker",
-    "label": "Text Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "General"
-  },
-  "fontName": {
-    "type": "googleFont",
-    "label": "Font",
-    "value": "Merriweather Sans",
-    "group": "General"
-  },
-  "fontSize": {
-    "type": "number",
-    "label": "Text Size (px)",
-    "value": 18,
-    "group": "General"
-  },
-  "fontWeight": {
-    "type": "dropdown",
-    "label": "Text Thickness",
-    "options": {
-      "100": "Thin",
-      "200": "Extra Light",
-      "300": "Light",
-      "400": "Normal",
-      "500": "Medium",
-      "600": "Semi Bold",
-      "700": "Bold",
-      "800": "Extra Bold",
-      "900": "Ultra Thick 🍑"
+  "backgroundStyleAlert":{
+    "type":"dropdown",
+    "label":"Background Style (Alert)",
+    "options":{
+      "false":"None",
+      "rgb":"👽RGB (Animated)",
+      "clouds":"☁️Clouds",
+      "hexagons":"🧊Hexagons",
+      "topography":"📡Topography",
+      "bricks":"🧱Bricks",
+      "cross":"✖️Cross",
+      "wiggles":"〰️Wiggles",
+      "bubbles":"⚪Bubbles",
+      "plus":"➕Plus",
+      "stripes":"➖Stripes"
     },
-    "value": "900",
-    "group": "General"
+    "value":"false",
+    "group":"Widget Styles"
   },
-   "lineHeight": {
-    "type": "number",
-    "label": "Line-Height (multiplier)",
-    "value": 1.2,
-    "group": "General"
+  "borderColor":{
+    "type":"colorpicker",
+    "label":"Border Color",
+    "value":"rgb(255, 255, 255)",
+    "group":"Widget Styles"
   },
-  "textPosition": {
-    "type": "dropdown",
-    "label": "Text Position",
-    "options": {
-      "flex-start": "Left",
-      "center": "Center",
-      "flex-end": "Right"
+  "borderWidth":{
+    "type":"slider",
+    "label":"Border Thickness",
+    "value":2,
+    "min":0,
+    "max":10,
+    "step":1,
+    "group":"Widget Styles"
+  },
+  "borderRadius":{
+    "type":"slider",
+    "label":"Border Rounding",
+    "value":10,
+    "min":0,
+    "max":30,
+    "step":1,
+    "group":"Widget Styles"
+  },
+  "borderStyle":{
+    "type":"dropdown",
+    "label":"Border Style",
+    "options":{
+      "none":"None",
+      "solid":"Solid",
+      "dotted":"Dotted",
+      "dashed":"Dashed"
     },
-    "value": "flex-start",
-    "group": "General"
+    "value":"none",
+    "group":"Widget Styles"
   },
-  "textTransform": {
-    "type": "dropdown",
-    "label": "Text Transform",
-    "options": {
-      "none": "None",
-      "uppercase": "Uppercase",
-      "lowercase": "Lowercase"
+  "boxShadowColor":{
+    "type":"colorpicker",
+    "label":"Shadow Color",
+    "value":"rgba(0,0,0,0.4)",
+    "group":"Widget Styles"
+  },
+  "boxShadowHorizontal":{
+    "type":"slider",
+    "label":"Shadow Horizontal Length",
+    "value":0,
+    "min":-5,
+    "max":5,
+    "step":1,
+    "group":"Widget Styles"
+  },
+  "boxShadowVertical":{
+    "type":"slider",
+    "label":"Shadow Vertical Length",
+    "value":3,
+    "min":-5,
+    "max":5,
+    "step":1,
+    "group":"Widget Styles"
+  },
+  "boxShadowBlur":{
+    "type":"slider",
+    "label":"Shadow Blur Radius",
+    "value":2,
+    "min":0,
+    "max":10,
+    "step":1,
+    "group":"Widget Styles"
+  },
+  "fontColor":{
+    "type":"colorpicker",
+    "label":"Text Color",
+    "value":"rgb(255, 255, 255)",
+    "group":"Text Styles"
+  },
+  "fontColorAlert":{
+    "type":"colorpicker",
+    "label":"Text Color (Alert)",
+    "value":"rgb(255, 255, 255)",
+    "group":"Text Styles"
+  },
+  "accentColor":{
+    "type":"colorpicker",
+    "label":"Accent Color",
+    "value":"rgb(255, 255, 255)",
+    "group":"Text Styles"
+  },
+  "accentColorAlert":{
+    "type":"colorpicker",
+    "label":"Accent Color (Alert)",
+    "value":"rgb(255, 255, 255)",
+    "group":"Text Styles"
+  },
+  "textAlignment":{
+    "type":"dropdown",
+    "label":"Text Alignment",
+    "options":{
+      "flex-start":"Left",
+      "center":"Center",
+      "flex-end":"Right"
     },
-    "value": "none",
-    "group": "General"
+    "value":"flex-start",
+    "group":"Text Styles"
   },
-  "iconColor": {
-    "type": "colorpicker",
-    "label": "Icon Color",
-    "value": "rgb(145, 70, 255)",
-    "group": "General"
+  "fontName":{
+    "type":"googleFont",
+    "label":"Font",
+    "value":"Merriweather Sans",
+    "group":"Text Styles"
   },
-  "iconSpacing": {
-    "type": "number",
-    "label": "Icon Spacing (px)",
-    "value": 8,
-    "group": "General"
+  "fontSize":{
+    "type":"number",
+    "label":"Text Size",
+    "value":18,
+    "min":1,
+    "step":1,
+    "group":"Text Styles"
   },
-  "iconPosition": {
-    "type": "dropdown",
-    "label": "Icon Position",
-    "options": {
-      "left": "Left",
-      "right": "Right"
+  "fontWeight":{
+    "type":"dropdown",
+    "label":"Text Thickness",
+    "options":{
+      "100":"Thin",
+      "200":"Extra Light",
+      "300":"Light",
+      "400":"Normal",
+      "500":"Medium",
+      "600":"Semi Bold",
+      "700":"Bold",
+      "800":"Extra Bold",
+      "900":"Ultra Thick 🍑"
     },
-    "value": "left",
-    "group": "General"
+    "value":"900",
+    "group":"Text Styles"
   },
-  "widgetPadding": {
-    "type": "number",
-    "label": "Widget Padding (px)",
-    "value": 15,
-    "group": "General"
+  "lineHeight":{
+    "type":"number",
+    "label":"Line-Height",
+    "value":1.2,
+    "group":"Text Styles"
   },
-  "borderColor": {
-    "type": "colorpicker",
-    "label": "Background Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Border"
-  },
-  "borderWidth": {
-    "type": "number",
-    "label": "Border Width (px)",
-    "value": 2,
-    "group": "Border"
-  },
-  "borderRadius": {
-    "type": "number",
-    "label": "Border Rounding (px)",
-    "value": 10,
-    "group": "Border"
-  },
-  "borderStyle": {
-    "type": "dropdown",
-    "label": "Border Style",
-    "options": {
-      "none": "None",
-      "solid": "Solid",
-      "dotted": "Dotted",
-      "dashed": "Dashed"
+  "textTransform":{
+    "type":"dropdown",
+    "label":"Text Transform",
+    "options":{
+      "none":"None",
+      "uppercase":"Uppercase",
+      "lowercase":"Lowercase"
     },
-    "value": "none",
-    "group": "Border"
+    "value":"none",
+    "group":"Text Styles"
   },
-  "boxShadowColor": {
-    "type": "colorpicker",
-    "label": "Shadow Color",
-    "value": "rgba(0,0,0,0.4)",
-    "group": "Box Shadow"
+  "textShadowColor":{
+    "type":"colorpicker",
+    "label":"Shadow Color",
+    "value":"rgba(0,0,0,0.4)",
+    "group":"Text Styles"
   },
-  "boxShadowHorizontal": {
-    "type": "slider",
-    "label": "Horizontal Shadow Length",
-    "value": 0,
-    "min": -5,
-    "max": 5,
-    "step": 1,
-    "group": "Box Shadow"
+  "textShadowHorizontal":{
+    "type":"slider",
+    "label":"Shadow Horizontal Length",
+    "value":0,
+    "min":-5,
+    "max":5,
+    "step":1,
+    "group":"Text Styles"
   },
-  "boxShadowVertical": {
-    "type": "slider",
-    "label": "Vertical Shadow Length",
-    "value": 3,
-    "min": -5,
-    "max": 5,
-    "step": 1,
-    "group": "Box Shadow"
+  "textShadowVertical":{
+    "type":"slider",
+    "label":"Shadow Vertical Length",
+    "value":2,
+    "min":-5,
+    "max":5,
+    "step":1,
+    "group":"Text Styles"
   },
-  "boxShadowBlur": {
-    "type": "slider",
-    "label": "Blur Radius",
-    "value": 2,
-    "min": 0,
-    "max": 10,
-    "step": 1,
-    "group": "Box Shadow"
+  "textShadowBlur":{
+    "type":"slider",
+    "label":"Shadow Blur Radius",
+    "value":3,
+    "min":0,
+    "max":10,
+    "step":1,
+    "group":"Text Styles"
   },
-  "textShadowColor": {
-    "type": "colorpicker",
-    "label": "Shadow Color",
-    "value": "rgba(0,0,0,0.3)",
-    "group": "Box Shadow"
+  "iconColor":{
+    "type":"colorpicker",
+    "label":"Icon Color",
+    "value":"rgb(145, 70, 255)",
+    "group":"Icon Styles"
   },
-  "textShadowHorizontal": {
-    "type": "slider",
-    "label": "Horizontal Shadow Length",
-    "value": 0,
-    "min": -5,
-    "max": 5,
-    "step": 1,
-    "group": "Text Shadow"
+  "iconColorAlert":{
+    "type":"colorpicker",
+    "label":"Icon Color (Alert)",
+    "value":"rgb(255, 255, 255)",
+    "group":"Icon Styles"
   },
-  "textShadowVertical": {
-    "type": "slider",
-    "label": "Vertical Shadow Length",
-    "value": 3,
-    "min": -5,
-    "max": 5,
-    "step": 1,
-    "group": "Text Shadow"
-  },
-  "textShadowBlur": {
-    "type": "slider",
-    "label": "Blur Radius",
-    "value": 2,
-    "min": 0,
-    "max": 10,
-    "step": 1,
-    "group": "Text Shadow"
-  },
-  "followerLatest": {
-    "type": "dropdown",
-    "label": "Latest Follower",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "iconAlignment":{
+    "type":"dropdown",
+    "label":"Icon Alignment",
+    "options":{
+      "left":"Left",
+      "right":"Right"
     },
-    "value": "true",
-    "group": "Followers"
+    "value":"left",
+    "group":"Icon Styles"
   },
-  "followerAlert": {
-    "type": "dropdown",
-    "label": "Follower Alert",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "iconSpacing":{
+    "type":"slider",
+    "label":"Icon Spacing",
+    "value":8,
+    "min":0,
+    "max":12,
+    "step":1,
+    "group":"Icon Styles"
+  },
+  "followerLatest":{
+    "type":"dropdown",
+    "label":"Latest Follower",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "true",
-    "group": "Followers"
+    "value":"true",
+    "group":"Followers"
   },
-  "followerSound": {
-    "type": "sound-input",
-    "label": "Follower Sound",
-    "group": "Followers"
+  "followerLatestMessage":{
+    "type":"text",
+    "label":"Follower Message (Latest & Alert)",
+    "value":"{name}",
+    "group":"Followers"
   },
-  "followerVolume": {
-    "type": "slider",
-    "label": "Sound Volume",
-    "value": 100,
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "group": "Followers"
-  },
-  "followerIcon": {
-  	"type": "text",
-    "label": "Followers Icon",
-    "value": "heart",
-    "group": "Followers"
-  },
-  "followerPlaceholder": {
-  	"type": "text",
-    "label": "Latest Follower Empty",
-    "value": "No Followers",
-    "group": "Followers"
-  },
-  "subscriberLatest": {
-    "type": "dropdown",
-    "label": "Latest Sub",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "followerCount":{
+    "type":"dropdown",
+    "label":"Follower Count",
+    "options":{
+      "session":"Session",
+      "week":"Week",
+      "month":"Month",
+      "total":"Total",
+      "false":"Disabled"
     },
-    "value": "true",
-    "group": "Subs"
+    "value":"false",
+    "group":"Followers"
   },
-  "subscriberAlert": {
-    "type": "dropdown",
-    "label": "Sub Alert",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "followerAlert":{
+    "type":"dropdown",
+    "label":"Follower Alert",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "true",
-    "group": "Subs"
+    "value":"true",
+    "group":"Followers"
   },
-  "subscriberSound": {
-    "type": "sound-input",
-    "label": "Subscriber Sound",
-    "group": "Subs"
+  "followerAlertSound":{
+    "type":"sound-input",
+    "label":"Alert Sound",
+    "group":"Followers"
   },
-  "subscriberVolume": {
-    "type": "slider",
-    "label": "Sound Volume",
-    "value": 100,
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "group": "Subs"
+  "followerAlertVolume":{
+    "type":"slider",
+    "label":"Alert Volume",
+    "value":100,
+    "min":0,
+    "max":100,
+    "step":1,
+    "group":"Followers"
   },
-  "subscriberIcon": {
-  	"type": "text",
-    "label": "Sub Icon",
-    "value": "star",
-    "group": "Subs"
-  },
-  "subscriberGiftIcon": {
-  	"type": "text",
-    "label": "Sub Gift Icon",
-    "value": "gift",
-    "group": "Subs"
-  },
-  "subscriberPlaceholder": {
-  	"type": "text",
-    "label": "Latest Sub Empty",
-    "value": "No Subs",
-    "group": "Subs"
-  },
-  "tipLatest": {
-    "type": "dropdown",
-    "label": "Latest Tip",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "followerGoal":{
+    "type":"dropdown",
+    "label":"Follower Goal",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "true",
-    "group": "Tips"
+    "value":"false",
+    "group":"Followers"
   },
-  "tipAlert": {
-    "type": "dropdown",
-    "label": "Tip Alert",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "followerGoalTitle":{
+    "type":"text",
+    "label":"Goal Title",
+    "value":"Follower Goal",
+    "group":"Followers"
+  },
+  "followerGoalAmount":{
+    "type":"number",
+    "label":"Set a Goal",
+    "value":100,
+    "min":0,
+    "step":1,
+    "group":"Followers"
+  },
+  "followerGoalAlignment":{
+    "type":"dropdown",
+    "label":"Goal Text Alignment",
+    "options":{
+      "left":"Left",
+      "center":"Center",
+      "right":"Right"
     },
-    "value": "true",
-    "group": "Tips"
+    "value":"center",
+    "group":"Followers"
   },
-  "tipSound": {
-    "type": "sound-input",
-    "label": "Tip Sound",
-    "group": "Tips"
+  "followerGoalFillColor":{
+    "type":"colorpicker",
+    "label":"Progress Bar Color",
+    "value":"rgb(81, 38, 143)",
+    "group":"Followers"
   },
-  "tipVolume": {
-    "type": "slider",
-    "label": "Sound Volume",
-    "value": 100,
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "group": "Tips"
-  },
-  "tipIcon": {
-  	"type": "text",
-    "label": "Tip Icon",
-    "value": "dollar-sign",
-    "group": "Tips"
-  },
-  "tipPlaceholder": {
-  	"type": "text",
-    "label": "Latest Tip Empty",
-    "value": "No Tips",
-    "group": "Tips"
-  },
-  "cheerLatest": {
-    "type": "dropdown",
-    "label": "Latest Cheer",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "followerGoalFillStyle":{
+    "type":"dropdown",
+    "label":"Progress Bar Style",
+    "options":{
+      "false":"None",
+      "rgb":"👽RGB (Animated)",
+      "clouds":"☁️Clouds",
+      "hexagons":"🧊Hexagons",
+      "topography":"📡Topography",
+      "bricks":"🧱Bricks",
+      "cross":"✖️Cross",
+      "wiggles":"〰️Wiggles",
+      "bubbles":"⚪Bubbles",
+      "plus":"➕Plus",
+      "stripes":"➖Stripes"
     },
-    "value": "true",
-    "group": "Cheers"
+    "value":"false",
+    "group":"Followers"
   },
-  "cheerAlert": {
-    "type": "dropdown",
-    "label": "Cheer Alert",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "followerIcon":{
+    "type":"text",
+    "label":"Follower Icon",
+    "value":"heart",
+    "group":"Followers"
+  },
+  "subscriberLatest":{
+    "type":"dropdown",
+    "label":"Latest Subscriber",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "true",
-    "group": "Cheers"
+    "value":"true",
+    "group":"Subscribers"
   },
-  "cheerSound": {
-    "type": "sound-input",
-    "label": "Cheer Sound",
-    "group": "Cheers"
+  "subscriberLatestMessage":{
+    "type":"text",
+    "label":"Latest Subscriber Message",
+    "value":"{name} {icon} {months}",
+    "group":"Subscribers"
   },
-  "cheerVolume": {
-    "type": "slider",
-    "label": "Sound Volume",
-    "value": 100,
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "group": "Cheers"
+  "subscriberLatestGiftMessage":{
+    "type":"text",
+    "label":"Sub Gift Message (Latest & Alert)",
+    "value":"{sender} {icon} {name}",
+    "group":"Subscribers"
   },
-  "cheerIcon": {
-  	"type": "text",
-    "label": "Cheer Icon",
-    "value": "gem",
-    "group": "Cheers"
+  "subscriberLatestCommunityGiftMessage":{
+    "type":"text",
+    "label":"Community Gift Message (Latest & Alert)",
+    "value":"{name} {icon} {amount}",
+    "group":"Subscribers"
   },
-  "cheerPlaceholder": {
-  	"type": "text",
-    "label": "Latest Cheer Empty",
-    "value": "No Cheers",
-    "group": "Cheers"
-  },
-  "raidAlert": {
-    "type": "dropdown",
-    "label": "Raid Alert",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "subscriberTop":{
+    "type":"dropdown",
+    "label":"All Time Top Gifter",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "true",
-    "group": "Raids"
+    "value":"false",
+    "group":"Subscribers"
   },
-  "raidSound": {
-    "type": "sound-input",
-    "label": "Raid Sound",
-    "group": "Raids"
+  "subscriberTopMessage":{
+    "type":"text",
+    "label":"Top Gifter Message",
+    "value":"{name} {icon} {amount}",
+    "group":"Subscribers"
   },
-  "raidVolume": {
-    "type": "slider",
-    "label": "Sound Volume",
-    "value": 100,
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "group": "Raids"
-  },
-  "raidIcon": {
-  	"type": "text",
-    "label": "Raid Icon",
-    "value": "users",
-    "group": "Raids"
-  },
-  "hostAlert": {
-    "type": "dropdown",
-    "label": "Host Alert",
-    "options": {
-      "true": "Enable",
-      "false": "Disable"
+  "subscriberCount":{
+    "type":"dropdown",
+    "label":"Subscriber Count",
+    "options":{
+      "session":"Session",
+      "week":"Week",
+      "month":"Month",
+      "total":"Total",
+      "false":"Disabled"
     },
-    "value": "false",
-    "group": "Hosts"
+    "value":"false",
+    "group":"Subscribers"
   },
-  "hostSound": {
-    "type": "sound-input",
-    "label": "Host Sound",
-    "group": "Hosts"
-  },
-  "hostVolume": {
-    "type": "slider",
-    "label": "Sound Volume",
-    "value": 100,
-    "min": 0,
-    "max": 100,
-    "step": 1,
-    "group": "Hosts"
-  },
-  "hostIcon": {
-  	"type": "text",
-    "label": "Host Icon",
-    "value": "users",
-    "group": "Hosts"
-  },
-  "alertBackgroundColor": {
-    "type": "colorpicker",
-    "label": "Alert Background Color",
-    "value": "rgb(145, 70, 255)",
-    "group": "Alerts"
-  },
-  "alertFontColor": {
-    "type": "colorpicker",
-    "label": "Alert Font Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Alerts"
-  },
-  "alertAccentColor": {
-    "type": "colorpicker",
-    "label": "Alert Accent Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Alerts"
-  },
-  "alertIconColor": {
-    "type": "colorpicker",
-    "label": "Alert Icon Color",
-    "value": "rgb(255, 255, 255)",
-    "group": "Alerts"
-  },
-  "alertAnimation": {
-    "type": "dropdown",
-    "label": "Alert Animation",
-    "options": {
-      "fade": "Fade",
-      "slideUp": "Slide Up",
-      "slideDown": "Slide Down",
-      "slideLeft": "Slide Left",
-      "slideRight": "Slide Right"
+  "subscriberAlert":{
+    "type":"dropdown",
+    "label":"Subscriber Alert",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "slideUp",
-    "group": "Alerts"
+    "value":"true",
+    "group":"Subscribers"
   },
-  "displayTime": {
-    "type": "number",
-    "label": "Display Time (s)",
-    "value": 5,
-    "group": "Advanced"
+  "subscriberAlertSound":{
+    "type":"sound-input",
+    "label":"Alert Sound",
+    "group":"Subscribers"
   },
-  "transitionTime": {
-    "type": "dropdown",
-    "label": "Transition Time",
-    "options": {
-      "200": "Fast",
-      "400": "Normal",
-      "600": "Slow"
+  "subscriberAlertVolume":{
+    "type":"slider",
+    "label":"Alert Volume",
+    "value":100,
+    "min":0,
+    "max":100,
+    "step":1,
+    "group":"Subscribers"
+  },
+  "subscriberGoal":{
+    "type":"dropdown",
+    "label":"Subscriber Goal",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
     },
-    "value": "600",
-    "group": "Advanced"
+    "value":"false",
+    "group":"Subscribers"
   },
-  "customLabel1": {
-    "type": "text",
-    "label": "Custom Label 1",
-    "value": "",
-    "group": "Custom Labels"
+  "subscriberGoalTitle":{
+    "type":"text",
+    "label":"Goal Title",
+    "value":"Subscriber Goal",
+    "group":"Subscribers"
   },
-  "customLabel2": {
-    "type": "text",
-    "label": "Custom Label 2",
-    "value": "",
-    "group": "Custom Labels"
+  "subscriberGoalAmount":{
+    "type":"number",
+    "label":"Set a Goal",
+    "value":100,
+    "min":0,
+    "step":1,
+    "group":"Subscribers"
   },
-  "customLabel3": {
-    "type": "text",
-    "label": "Custom Label 3",
-    "value": "",
-    "group": "Custom Labels"
+  "subscriberGoalAlignment":{
+    "type":"dropdown",
+    "label":"Goal Text Alignment",
+    "options":{
+      "left":"Left",
+      "center":"Center",
+      "right":"Right"
+    },
+    "value":"center",
+    "group":"Subscribers"
   },
-  "widgetName": {
-  	"type": "hidden",
-    "value": "Neohud"
+  "subscriberGoalFillColor":{
+    "type":"colorpicker",
+    "label":"Progress Bar Color",
+    "value":"rgb(81, 38, 143)",
+    "group":"Subscribers"
+  },
+  "subscriberGoalFillStyle":{
+    "type":"dropdown",
+    "label":"Progress Bar Style",
+    "options":{
+      "false":"None",
+      "rgb":"👽RGB (Animated)",
+      "clouds":"☁️Clouds",
+      "hexagons":"🧊Hexagons",
+      "topography":"📡Topography",
+      "bricks":"🧱Bricks",
+      "cross":"✖️Cross",
+      "wiggles":"〰️Wiggles",
+      "bubbles":"⚪Bubbles",
+      "plus":"➕Plus",
+      "stripes":"➖Stripes"
+    },
+    "value":"false",
+    "group":"Subscribers"
+  },
+  "subscriberIcon":{
+    "type":"text",
+    "label":"Subscriber Icon",
+    "value":"star",
+    "group":"Subscribers"
+  },
+  "tipLatest":{
+    "type":"dropdown",
+    "label":"Latest Tip",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"true",
+    "group":"Tips"
+  },
+  "tipLatestMessage":{
+    "type":"text",
+    "label":"Tip Message (Latest & Alert)",
+    "value":"{name}: {amount}{currency}",
+    "group":"Tips"
+  },
+  "tipTop":{
+    "type":"dropdown",
+    "label":"Top Tipper",
+    "options":{
+      "session":"Session",
+      "weekly":"Weekly",
+      "monthly":"Monhtly",
+      "alltime":"All Time",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Tips"
+  },
+  "tipTopMessage":{
+    "type":"text",
+    "label":"Top Gifter Message",
+    "value":"{name}: {amount}{currency}",
+    "group":"Tips"
+  },
+  "tipCount":{
+    "type":"dropdown",
+    "label":"Tip Amount",
+    "options":{
+      "session":"Session",
+      "week":"Week",
+      "month":"Monht",
+      "total":"Total",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Tips"
+  },
+  "tipAlert":{
+    "type":"dropdown",
+    "label":"Tip Alert",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"true",
+    "group":"Tips"
+  },
+  "tipAlertSound":{
+    "type":"sound-input",
+    "label":"Alert Sound",
+    "group":"Tips"
+  },
+  "tipAlertVolume":{
+    "type":"slider",
+    "label":"Alert Volume",
+    "value":100,
+    "min":0,
+    "max":100,
+    "step":1,
+    "group":"Tips"
+  },
+  "tipGoal":{
+    "type":"dropdown",
+    "label":"Tip Goal",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Tips"
+  },
+  "tipGoalTitle":{
+    "type":"text",
+    "label":"Goal Title",
+    "value":"Tip Goal",
+    "group":"Tips"
+  },
+  "tipGoalAmount":{
+    "type":"number",
+    "label":"Set a Goal",
+    "value":100,
+    "min":0,
+    "step":0.01,
+    "group":"Tips"
+  },
+  "tipGoalAlignment":{
+    "type":"dropdown",
+    "label":"Goal Text Alignment",
+    "options":{
+      "left":"Left",
+      "center":"Center",
+      "right":"Right"
+    },
+    "value":"center",
+    "group":"Tips"
+  },
+  "tipGoalFillColor":{
+    "type":"colorpicker",
+    "label":"Progress Bar Color",
+    "value":"rgb(81, 38, 143)",
+    "group":"Tips"
+  },
+  "tipGoalFillStyle":{
+    "type":"dropdown",
+    "label":"Progress Bar Style",
+    "options":{
+      "false":"None",
+      "rgb":"👽RGB (Animated)",
+      "clouds":"☁️Clouds",
+      "hexagons":"🧊Hexagons",
+      "topography":"📡Topography",
+      "bricks":"🧱Bricks",
+      "cross":"✖️Cross",
+      "wiggles":"〰️Wiggles",
+      "bubbles":"⚪Bubbles",
+      "plus":"➕Plus",
+      "stripes":"➖Stripes"
+    },
+    "value":"false",
+    "group":"Tips"
+  },
+  "tipIcon":{
+    "type":"text",
+    "label":"Tip Icon",
+    "value":"dollar-sign",
+    "group":"Tips"
+  },
+  "cheerLatest":{
+    "type":"dropdown",
+    "label":"Latest Cheer",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"true",
+    "group":"Bits"
+  },
+  "cheerLatestMessage":{
+    "type":"text",
+    "label":"Cheer Message (Latest & Alert)",
+    "value":"{name}: {amount}",
+    "group":"Bits"
+  },
+  "cheerTop":{
+    "type":"dropdown",
+    "label":"Top Cheerer",
+    "options":{
+      "session":"Session",
+      "weekly":"Weekly",
+      "monthly":"Monhtly",
+      "alltime":"All Time",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Bits"
+  },
+  "cheerTopMessage":{
+    "type":"text",
+    "label":"Top Cheerer Message",
+    "value":"{name}: {amount}",
+    "group":"Bits"
+  },
+  "cheerCount":{
+    "type":"dropdown",
+    "label":"Cheer Amount",
+    "options":{
+      "session":"Session",
+      "week":"Week",
+      "month":"Monht",
+      "total":"Total",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Bits"
+  },
+  "cheerAlert":{
+    "type":"dropdown",
+    "label":"Cheer Alert",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"true",
+    "group":"Bits"
+  },
+  "cheerAlertSound":{
+    "type":"sound-input",
+    "label":"Alert Sound",
+    "group":"Bits"
+  },
+  "cheerAlertVolume":{
+    "type":"slider",
+    "label":"Alert Volume",
+    "value":100,
+    "min":0,
+    "max":100,
+    "step":1,
+    "group":"Bits"
+  },
+  "cheerGoal":{
+    "type":"dropdown",
+    "label":"Bits Goal",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Bits"
+  },
+  "cheerGoalTitle":{
+    "type":"text",
+    "label":"Goal Title",
+    "value":"Bits Goal",
+    "group":"Bits"
+  },
+  "cheerGoalAmount":{
+    "type":"number",
+    "label":"Set a Goal",
+    "value":100,
+    "min":0,
+    "step":1,
+    "group":"Bits"
+  },
+  "cheerGoalAlignment":{
+    "type":"dropdown",
+    "label":"Goal Text Alignment",
+    "options":{
+      "left":"Left",
+      "center":"Center",
+      "right":"Right"
+    },
+    "value":"center",
+    "group":"Bits"
+  },
+  "cheerGoalFillColor":{
+    "type":"colorpicker",
+    "label":"Progress Bar Color",
+    "value":"rgb(81, 38, 143)",
+    "group":"Bits"
+  },
+  "cheerGoalFillStyle":{
+    "type":"dropdown",
+    "label":"Progress Bar Style",
+    "options":{
+      "false":"None",
+      "rgb":"👽RGB (Animated)",
+      "clouds":"☁️Clouds",
+      "hexagons":"🧊Hexagons",
+      "topography":"📡Topography",
+      "bricks":"🧱Bricks",
+      "cross":"✖️Cross",
+      "wiggles":"〰️Wiggles",
+      "bubbles":"⚪Bubbles",
+      "plus":"➕Plus",
+      "stripes":"➖Stripes"
+    },
+    "value":"false",
+    "group":"Bits"
+  },
+  "cheerIcon":{
+    "type":"text",
+    "label":"Cheer Icon",
+    "value":"gem",
+    "group":"Bits"
+  },
+  "hostLatest":{
+    "type":"dropdown",
+    "label":"Latest Host",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Hosts"
+  },
+  "hostLatestMessage":{
+    "type":"text",
+    "label":"Host Message (Latest & Alert)",
+    "value":"{name}: {amount}",
+    "group":"Hosts"
+  },
+  "hostAlert":{
+    "type":"dropdown",
+    "label":"Host Alert",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"true",
+    "group":"Hosts"
+  },
+  "hostAlertSound":{
+    "type":"sound-input",
+    "label":"Alert Sound",
+    "group":"Hosts"
+  },
+  "hostAlertVolume":{
+    "type":"slider",
+    "label":"Alert Volume",
+    "value":100,
+    "min":0,
+    "max":100,
+    "step":1,
+    "group":"Hosts"
+  },
+  "hostIcon":{
+    "type":"text",
+    "label":"Host Icon",
+    "value":"users",
+    "group":"Hosts"
+  },
+  "raidLatest":{
+    "type":"dropdown",
+    "label":"Latest Raid",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Raids"
+  },
+  "raidLatestMessage":{
+    "type":"text",
+    "label":"Raid Message (Latest & Alert)",
+    "value":"{name}: {amount}",
+    "group":"Raids"
+  },
+  "raidAlert":{
+    "type":"dropdown",
+    "label":"Raid Alert",
+    "options":{
+      "true":"Enabled",
+      "false":"Disabled"
+    },
+    "value":"false",
+    "group":"Raids"
+  },
+  "raidAlertSound":{
+    "type":"sound-input",
+    "label":"Alert Sound",
+    "group":"Raids"
+  },
+  "raidAlertVolume":{
+    "type":"slider",
+    "label":"Alert Volume",
+    "value":100,
+    "min":0,
+    "max":100,
+    "step":1,
+    "group":"Raids"
+  },
+  "raidIcon":{
+    "type":"text",
+    "label":"Raid Icon",
+    "value":"users",
+    "group":"Raids"
+  },
+  "twitch":{
+    "type":"text",
+    "label":"Twitch",
+    "value":"",
+    "group":"Socials"
+  },
+  "youtube":{
+    "type":"text",
+    "label":"YouTube",
+    "value":"",
+    "group":"Socials"
+  },
+  "tiktok":{
+    "type":"text",
+    "label":"TikTok",
+    "value":"",
+    "group":"Socials"
+  },
+  "instagram":{
+    "type":"text",
+    "label":"Instagram",
+    "value":"",
+    "group":"Socials"
+  },
+  "twitter":{
+    "type":"text",
+    "label":"Twitter",
+    "value":"",
+    "group":"Socials"
+  },
+  "facebook":{
+    "type":"text",
+    "label":"Facebook",
+    "value":"",
+    "group":"Socials"
+  },
+  "custom1":{
+    "type":"text",
+    "label":"Label 1",
+    "group":"Custom Labels"
+  },
+  "custom2":{
+    "type":"text",
+    "label":"Label 2",
+    "group":"Custom Labels"
+  },
+  "custom3":{
+    "type":"text",
+    "label":"Label 3",
+    "group":"Custom Labels"
+  },
+  "alertAnimation":{
+    "type":"dropdown",
+    "label":"Alert Animation",
+    "options":{
+      "fade":"Fade",
+      "slideUp":"Slide Up",
+      "slideDown":"Slide Down",
+      "slideLeft":"Slide Left",
+      "slideRight":"Slide Right"
+    },
+    "value":"slideUp",
+    "group":"Advanced"
+  },
+  "displayTime":{
+    "type":"number",
+    "label":"Display Time (s)",
+    "value":8,
+    "min":1,
+    "step":0.5,
+    "group":"Advanced"
+  },
+  "transitionTime":{
+    "type":"dropdown",
+    "label":"Transition Time",
+    "options":{
+      "200":"Fast",
+      "400":"Normal",
+      "600":"Slow"
+    },
+    "value":"600",
+    "group":"Advanced"
+  },
+  "helpVideo":{
+    "type":"text",
+    "label":"How To Use",
+    "value":"https://youtu.be/WfHCxgSL3SU",
+    "group":"Help"
+  },
+  "helpDiscord":{
+    "type":"text",
+    "label":"Developer Discord",
+    "value":"https://discord.com/invite/w88MhTN9pd",
+    "group":"Help"
+  },
+  "helpIcons":{
+    "type":"text",
+    "label":"Available Icons",
+    "value":"https://fontawesome.com/v5.15/icons?d=gallery&p=2&s=solid&m=free",
+    "group":"Help"
+  },
+  "widgetName":{
+    "type":"hidden",
+    "label":"[Neohud - v2.0]",
+    "value":"Neohud",
+    "group":"About"
   },
   "widgetAuthor":{
-    "type": "hidden",
-    "value": "Neoshin"
+    "type":"hidden",
+    "label":"Created by Neoshin#1871",
+    "value":"Neoshin",
+    "group":"About"
+  },
+  "widgetVersion":{
+    "type":"hidden",
+    "label":"Twitch - twitch.tv/neoshinlive",
+    "value":"twitch.tv/neoshinlive",
+    "group":"About"
+  },
+  "widgetUpdateUrl":{
+    "type":"hidden",
+    "label":"Socials - linktr.ee/neoshinlive",
+    "value":"https://github.com/NeoshinLIVE/Neohud",
+    "group":"About"
+  },
+  "widgetMore":{
+    "type":"hidden",
+    "label":"More Widgets - github.com/NeoshinLIVE",
+    "group":"About"
   }
 }
